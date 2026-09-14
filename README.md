@@ -1,17 +1,17 @@
-# ⚡ LANShare — LAN File & Clipboard Sharing
+# SwiftShare — LAN File & Clipboard Sharing
 
 Share files and clipboard text between two PCs/Laptops on the **same Wi-Fi or Ethernet network** — no internet required, no accounts, no cloud.
 
 ---
 
-## ✅ Requirements
+## Requirements
 
 - Python 3.10+
 - Both computers on the **same local network**
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install dependencies
 
@@ -27,7 +27,7 @@ python lanshare.py
 
 ---
 
-## 🖥️ How to Use
+## How to Use
 
 ### Connecting to a Peer
 
@@ -65,7 +65,7 @@ The text is instantly received on the other PC and auto-copied to their clipboar
 
 ---
 
-## 🔒 Security Notes
+## Security Notes
 
 - Works **LAN-only** — no data leaves your local network
 - No encryption — suitable for trusted home/office networks
@@ -73,7 +73,7 @@ The text is instantly received on the other PC and auto-copied to their clipboar
 
 ---
 
-## 🛠️ Firewall Setup (if needed)
+## Firewall Setup (if needed)
 
 **Windows:**
 ```
@@ -81,17 +81,9 @@ netsh advfirewall firewall add rule name="LANShare" dir=in action=allow protocol
 netsh advfirewall firewall add rule name="LANShare-UDP" dir=in action=allow protocol=UDP localport=57833
 ```
 
-**Linux (ufw):**
-```bash
-sudo ufw allow 57832/tcp
-sudo ufw allow 57833/udp
-```
-
-**macOS:** Allow Python through the macOS firewall when prompted.
-
 ---
 
-## 📂 File Save Location
+## File Save Location
 
 Received files are saved to:
 ```
@@ -101,7 +93,7 @@ Click **📂 Open Folder** in the sidebar to open it directly.
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 | Problem | Fix |
 |---|---|
