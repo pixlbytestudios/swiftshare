@@ -22,7 +22,7 @@ pip install customtkinter pyperclip
 ### 2. Run on BOTH computers
 
 ```bash
-python lanshare.py
+python SwiftShare.py
 ```
 
 ---
@@ -37,7 +37,7 @@ python lanshare.py
 3. Click **Select** to make them the active peer
 
 **Option B — Manual IP**
-1. Find the other PC's IP (shown in the LANShare header, or `ipconfig` / `ifconfig`)
+1. Find the other PC's IP (shown in the SwiftShare header, or `ipconfig` / `ifconfig`)
 2. Enter it in the "Manual Connect" box
 3. Press Enter or click **Connect**
 
@@ -77,8 +77,8 @@ The text is instantly received on the other PC and auto-copied to their clipboar
 
 **Windows:**
 ```
-netsh advfirewall firewall add rule name="LANShare" dir=in action=allow protocol=TCP localport=57832
-netsh advfirewall firewall add rule name="LANShare-UDP" dir=in action=allow protocol=UDP localport=57833
+netsh advfirewall firewall add rule name="SwiftShare" dir=in action=allow protocol=TCP localport=57832
+netsh advfirewall firewall add rule name="SwiftShare-UDP" dir=in action=allow protocol=UDP localport=57833
 ```
 
 ---
@@ -100,4 +100,4 @@ Click **📂 Open Folder** in the sidebar to open it directly.
 | Peers not discovered | Use Manual Connect with the other PC's IP |
 | Transfer hangs | Check firewall — allow TCP 57832 |
 | "pyperclip not installed" | `pip install pyperclip` |
-| Port already in use | Close other instances of LANShare |
+| Port already in use | Close other instances of SwiftShare |
