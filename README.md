@@ -1,68 +1,111 @@
-# SwiftShare
+# ⚡ LANShare — LAN File & Clipboard Sharing
 
-Fast, end-to-end encrypted LAN file sharing, chat, and voice notes — no internet, no accounts, no cloud.
-
-**PixlByte Studios** • Offline-first • LAN-based • Zero-telemetry
+Share files and clipboard text between two PCs/Laptops on the **same Wi-Fi or Ethernet network** — no internet required, no accounts, no cloud.
 
 ---
 
-## Features
+## ✅ Requirements
 
-- 🔒 **End-to-end encryption** — X25519 ECDH key exchange + Fernet for every message and file
-- 📁 **Reliable file transfers** — pause, cancel, and resume, backed by SQLite persistence
-- 💬 **Familiar chat UI** — WhatsApp-style bubbles for LAN messaging
-- 🎙️ **Voice notes** — tap-to-record with pause/discard/send, and accurate pause/resume playback
-- 🔍 **Auto peer discovery** — finds other SwiftShare devices on your network, no setup required
-- 🔔 **Smart notifications** — native Windows alerts via winotify, gated so you're not spammed while the app is focused
-- ❤️ **Background health checks** — keeps peer connections alive and reports status live
+- Python 3.10+
+- Both computers on the **same local network**
 
-## Download
+---
 
-Grab the latest build from the [Releases page](https://github.com/pixlbytestudios/swiftshare/releases/latest) — single `.exe`, no install required.
+## 🚀 Quick Start
 
-| Platform | File |
+### 1. Install dependencies
+
+```bash
+pip install customtkinter pyperclip
+```
+
+### 2. Run on BOTH computers
+
+```bash
+python lanshare.py
+```
+
+---
+
+## 🖥️ How to Use
+
+### Connecting to a Peer
+
+**Option A — Auto Discovery (recommended)**
+1. Click **Scan Network** on both PCs
+2. Your peer appears in the sidebar
+3. Click **Select** to make them the active peer
+
+**Option B — Manual IP**
+1. Find the other PC's IP (shown in the LANShare header, or `ipconfig` / `ifconfig`)
+2. Enter it in the "Manual Connect" box
+3. Press Enter or click **Connect**
+
+---
+
+### Sending a File
+
+1. Select your peer (sidebar)
+2. Go to **📁 Files** tab
+3. Click **Browse** → pick any file
+4. Click **▶ Send**
+
+The file is saved to `~/SwiftShare_Downloads/` on the recipient's PC. A progress bar tracks the transfer.
+
+---
+
+### Sharing Clipboard
+
+1. Select your peer
+2. Go to **📋 Clipboard** tab
+3. Click **Paste from Clipboard** (reads your system clipboard) — or type/paste manually
+4. Click **▶ Send**
+
+The text is instantly received on the other PC and auto-copied to their clipboard (if pyperclip is installed). Click **📋 Copy** in the received section to copy it manually.
+
+---
+
+## 🔒 Security Notes
+
+- Works **LAN-only** — no data leaves your local network
+- No encryption — suitable for trusted home/office networks
+- Firewall: allow **TCP port 57832** and **UDP port 57833** if transfers fail
+
+---
+
+## 🛠️ Firewall Setup (if needed)
+
+**Windows:**
+```
+netsh advfirewall firewall add rule name="LANShare" dir=in action=allow protocol=TCP localport=57832
+netsh advfirewall firewall add rule name="LANShare-UDP" dir=in action=allow protocol=UDP localport=57833
+```
+
+**Linux (ufw):**
+```bash
+sudo ufw allow 57832/tcp
+sudo ufw allow 57833/udp
+```
+
+**macOS:** Allow Python through the macOS firewall when prompted.
+
+---
+
+## 📂 File Save Location
+
+Received files are saved to:
+```
+~/SwiftShare_Downloads/
+```
+Click **📂 Open Folder** in the sidebar to open it directly.
+
+---
+
+## 🐛 Troubleshooting
+
+| Problem | Fix |
 |---|---|
-| Windows 10/11 | `SwiftShare-v3.0-win64.exe` |
-
-## How It Works
-
-SwiftShare runs a lightweight peer service on each device on your local network. Devices discover each other automatically over LAN broadcast, then negotiate a shared key via X25519 ECDH before any message, file, or voice note is exchanged — everything stays encrypted end-to-end and never touches an external server. If LAN/Wi-Fi isn't available, it falls back to a direct Bluetooth RFCOMM connection.
-
-## Tech Stack
-
-- Python 3.13
-- CustomTkinter (desktop UI)
-- `cryptography` (X25519 ECDH, Fernet)
-- SQLite (transfer state persistence)
-- winrt (Bluetooth RFCOMM fallback)
-- winotify (native notifications)
-- PyInstaller (onefile Windows packaging)
-
-## Build From Source
-
-```bash
-git clone https://github.com/pixlbytestudios/swiftshare.git
-cd swiftshare
-pip install -r requirements.txt
-python main.py
-```
-
-Build the Windows executable:
-
-```bash
-pyinstaller swiftshare.spec
-```
-
-## Version History
-
-- **v3.0** — End-to-end encryption, Bluetooth fallback, Android client, background health checks
-- **v2.0** — Chat bubbles, voice notes, transfer resume
-- **v1.0** — Initial LAN file sharing (LANShare)
-
-## License
-
-MIT — see [LICENSE](LICENSE).
-
-## Author
-
-**Imisioluwa** — PixlByte Studios
+| Peers not discovered | Use Manual Connect with the other PC's IP |
+| Transfer hangs | Check firewall — allow TCP 57832 |
+| "pyperclip not installed" | `pip install pyperclip` |
+| Port already in use | Close other instances of LANShare |
