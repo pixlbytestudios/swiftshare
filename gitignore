@@ -1,0 +1,37 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# PyInstaller
+build/
+dist/
+
+# Packaging / distribution
+*.egg-info/
+.eggs/
+
+# SwiftShare local runtime data
+*.db
+*.db-journal
+transfers/
+received/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and local config
+*.log
+config.local.json
+
+# Android (Kivy client)
+.buildozer/
+bin/
