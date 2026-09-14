@@ -32,7 +32,6 @@ SwiftShare runs a lightweight peer service on each device on your local network.
 
 - Python 3.13
 - CustomTkinter (desktop UI)
-- Kivy / KivyMD (Android client)
 - `cryptography` (X25519 ECDH, Fernet)
 - SQLite (transfer state persistence)
 - winrt (Bluetooth RFCOMM fallback)
